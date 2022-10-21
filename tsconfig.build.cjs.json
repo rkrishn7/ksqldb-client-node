@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "dist/cjs",
+    "inlineSources": true,
+  },
+  "exclude": ["**/*spec.ts"],
+  "include": ["src"]
+}

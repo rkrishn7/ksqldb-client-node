@@ -1,0 +1,13 @@
+version: '2.4'
+
+services:
+  ksqldb-server:
+    platform: linux/amd64
+    image: confluentinc/ksqldb-server:0.28.2
+    ports:
+      - "${KSQLDB_SERVER_HOST_PORT:-8088}:8088"
+    environment:
+      KSQL_BOOTSTRAP_SERVERS: "${KSQL_BOOTSTRAP_SERVERS:?Required Value}"
+      KSQL_LISTENERS: http://0.0.0.0:8088/
+      KSQL_KSQL_SERVICE_ID: ksql_service_
+      KSQL_OPTS: "-Dksql.streams.replication.factor=1"
