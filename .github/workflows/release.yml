@@ -18,9 +18,9 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn build
       - run: yarn build:types
-      - run: cp LICENSE build/LICENSE
-      - run: cp README.md build/README.md
-      - run: jq 'del(.devDependencies) | del(.scripts)' package.json > build/package.json
+      - run: cp LICENSE dist/LICENSE
+      - run: cp README.md dist/README.md
+      - run: jq 'del(.devDependencies) | del(.scripts)' package.json > dist/package.json
       - run: yarn release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
