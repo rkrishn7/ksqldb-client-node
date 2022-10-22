@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/rkrishn7/ksqldb-js/compare/v1.0.0...v1.1.0) (2022-10-22)
+
+
+### Features
+
+* npm initial release ([cd8d5de](https://github.com/rkrishn7/ksqldb-js/commit/cd8d5def64b4ad52fa754ecb262ed6669369c424))
+
 # 1.0.0 (2022-10-22)
 
 
