@@ -1,0 +1,25 @@
+name: Release
+on:
+  workflow_run:
+    workflows: ["CI"]
+    branches: [main]
+    types:
+      - completed
+jobs:
+  release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    name: Build & Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+      - run: yarn build:types
+      - run: cp LICENSE build/LICENSE
+      - run: cp README.md build/README.md
+      - run: jq 'del(.devDependencies) | del(.scripts)' package.json > build/package.json
+      - run: yarn release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
