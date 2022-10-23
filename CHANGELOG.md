@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/rkrishn7/ksqldb-client-node/compare/v1.1.0...v1.1.1) (2022-10-23)
+
+
+### Bug Fixes
+
+* add postversion ([0de5613](https://github.com/rkrishn7/ksqldb-client-node/commit/0de5613bafb80cc5918bd24a47e927c65583d881))
+
 # [1.1.0](https://github.com/rkrishn7/ksqldb-js/compare/v1.0.0...v1.1.0) (2022-10-22)
 
 
