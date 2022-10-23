@@ -20,7 +20,7 @@ jobs:
       - run: yarn build:types
       - run: cp LICENSE dist/LICENSE
       - run: cp README.md dist/README.md
-      - run: jq 'del(.devDependencies) | del(.scripts)' package.json > dist/package.json
+      - run: jq 'del(.devDependencies) | del(.scripts) | del(.jest)' package.json > dist/package.json
       - run: yarn release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
