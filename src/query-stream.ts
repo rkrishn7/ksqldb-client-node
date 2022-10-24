@@ -1,19 +1,18 @@
 import * as http2 from 'http2';
 import internal, { Transform } from 'stream';
+import {
+  KSQL_API_DELIMITED_CONTENT_TYPE,
+  KSQL_API_QUERY_STREAM_ENDPOINT,
+} from './constants';
 import { KsqlDbQueryStreamError } from './errors';
 import {
   KsqlDbAuthTypes,
   QueryStreamSuccessMetadata,
   QueryStreamErrorMetadata,
   QueryStreamMetadata,
+  QueryProperties,
+  SessionVariables,
 } from './types';
-
-const KSQL_API_QUERY_STREAM_ENDPOINT = '/query-stream' as const;
-const KSQL_API_DELIMITED_CONTENT_TYPE =
-  'application/vnd.ksqlapi.delimited.v1' as const;
-
-type SessionVariables = Record<string, any>;
-type QueryProperties = Record<string, any>;
 
 export class QueryStream<T = any> implements AsyncIterable<T[]> {
   private _success_metadata: QueryStreamSuccessMetadata | undefined;
@@ -54,17 +53,24 @@ export class QueryStream<T = any> implements AsyncIterable<T[]> {
   }
 
   /**
-   * Returns the error this query stream closed with, if any
+   * Returns the error message the server returned, if any
    */
   get errorMessage(): string {
     return this._error_metadata?.message;
   }
 
   /**
-   * Returns the error this query stream closed with, if any
+   * Returns the error code the server returned, if any
    */
   get errorCode(): number {
     return this._error_metadata?.['error_code'];
+  }
+
+  /**
+   * Returns the error type the server returned, if any
+   */
+  get errorType(): string {
+    return this._error_metadata?.['@type'];
   }
 
   /**
