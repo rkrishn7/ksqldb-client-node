@@ -33,3 +33,6 @@ export interface QueryStreamErrorMetadata {
 export type QueryStreamMetadata =
   | QueryStreamErrorMetadata
   | QueryStreamSuccessMetadata;
+
+export type SessionVariables = Record<string, any>;
+export type QueryProperties = Record<string, any>;
